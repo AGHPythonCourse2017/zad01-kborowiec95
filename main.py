@@ -1,1 +1,1 @@
-print("hello world")
+print("Narcotic music generator!")
