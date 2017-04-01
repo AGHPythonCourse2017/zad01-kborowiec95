@@ -1,14 +1,20 @@
-from pixels_array import PixelsRGBArray
-from light_to_music_converter import get_midi_notes_by_horizontal_scan
+from pixelsarray import PixelsRGBArray
+from lightmusicconverter import get_midi_notes_by_horizontal_scan
 from midi_track import MidiTrack
+from parser import get_parsed_args
 
-# Create a list of notes. Each note is a list: [time, pitch, velocity, duration]
-# [
-#    [0, 60, 127, 3],  #At 0 beats (the start), Middle C with velocity 127, for 3 beats
-#    [100, 61, 127, 4]  #At 10 beats (12 seconds from start), C#5 with velocity 127, for 4 beats
-# ]
+args = get_parsed_args('Narcotic music generator')
+input_file_name = args.input
+output_file_name = args.output
+scan_mode = args.scan_mode
+tempo = args.tempo
+precision = args.precision
 
-pixels = PixelsRGBArray("spect.png")
-midi_notes = get_midi_notes_by_horizontal_scan(pixels, 2)
-track = MidiTrack('fll.mid', midi_notes, 200)
+print(input_file_name, output_file_name, scan_mode, tempo, precision)
+pixels = PixelsRGBArray(input_file_name)
+if scan_mode == 'horizontal':
+    midi_notes = get_midi_notes_by_horizontal_scan(pixels, precision)
+else:
+    midi_notes = get_midi_notes_by_vertical_scan(pixels, precision)
+track = MidiTrack(output_file_name, midi_notes, tempo)
 track.save_to_file()
