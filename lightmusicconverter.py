@@ -1,8 +1,8 @@
 from random import randint
 
 
-# 380nm .. 780nm -> 0 .. 255
-# converts light wavelength values to 0 - 255 which will represent midi pitch values
+# 380nm .. 780nm -> 0 .. 127
+# converts light wavelength values to 0 - 127 which will represent midi pitch values
 def from_light_to_sound_wave(light_wave_length):
     return (light_wave_length - 380.0) * 127.0 / 400.0
 
