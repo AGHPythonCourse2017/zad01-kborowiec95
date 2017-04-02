@@ -2,7 +2,7 @@ from PIL import Image
 from math import sqrt
 
 
-# class which represent array of pixels from png file
+# Class which represent array of pixels from png file :
 class PixelsRGBArray:
     def __init__(self, png_file_name):
         image = Image.open(png_file_name)
@@ -24,9 +24,11 @@ class PixelsRGBArray:
         return self.converter.get_wavelength(self.red(x, y), self.green(x, y), self.blue(x, y))
 
 
+# Class which is able to convert rgb values to spectrum light wavelength value :
 class ConverterRGBToSpectrum:
     def __init__(self):
-        spec_image = Image.open('spect.png')
+        spectrum_file = 'spect.png'
+        spec_image = Image.open(spectrum_file)
         spec_img = spec_image.convert("RGB")
         self.pixels = spec_img.load()
         spec_size = spec_img.size[0]
@@ -41,7 +43,7 @@ class ConverterRGBToSpectrum:
     def get_wavelength(self, r, g, b):
         minimal_diff = 100000
         result = 0
-        # check with rgb codes are the most similar
+        # Check which rgb codes are the most similar :
         for x in self.map_wavelength_by_rgb.keys():
             d = diff_rgb(x, (r, g, b))
             if d == 0:

@@ -1,7 +1,7 @@
 import argparse
 
 
-# return parsed arguments
+# Return parsed arguments :
 def get_parsed_args(prog_name):
     parser = argparse.ArgumentParser(prog=prog_name)
     # input file :
