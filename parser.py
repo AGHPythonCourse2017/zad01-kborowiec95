@@ -13,7 +13,7 @@ def get_parsed_args(prog_name):
     # tempo:
     parser.add_argument('-t', dest='tempo', choices=range(20, 200, 1), default=120, type=int)
     # scan precision :
-    parser.add_argument('-p', dest='precision', choices=range(1, 20, 1), default=5, type=int)
+    parser.add_argument('-p', dest='precision', choices=range(1, 500, 1), default=15, type=int)
     result = parser.parse_args()
     if not str.endswith(result.input, '.png'):
         result.input += '.png'

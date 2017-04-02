@@ -1,5 +1,5 @@
 from pixelsarray import PixelsRGBArray
-from lightmusicconverter import get_midi_notes_by_horizontal_scan
+import lightmusicconverter as lc
 from midi_track import MidiTrack
 from parser import get_parsed_args
 
@@ -10,11 +10,13 @@ scan_mode = args.scan_mode
 tempo = args.tempo
 precision = args.precision
 
-print(input_file_name, output_file_name, scan_mode, tempo, precision)
 pixels = PixelsRGBArray(input_file_name)
 if scan_mode == 'horizontal':
-    midi_notes = get_midi_notes_by_horizontal_scan(pixels, precision)
+    print('Horizontal scanning :')
+    midi_notes = lc.get_midi_notes_by_horizontal_scan(pixels, precision)
 else:
-    midi_notes = get_midi_notes_by_vertical_scan(pixels, precision)
+    print('Vertical scanning :')
+    midi_notes = lc.get_midi_notes_by_vertical_scan(pixels, precision)
 track = MidiTrack(output_file_name, midi_notes, tempo)
 track.save_to_file()
+print('Saved into : ' + output_file_name)
