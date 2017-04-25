@@ -1,11 +1,11 @@
-from PIL import Image
+from PIL import Image as pillImg
 from math import sqrt
 
 
 # Class which represent array of pixels from png file :
 class PixelsRGBArray:
     def __init__(self, png_file_name):
-        image = Image.open(png_file_name)
+        image = pillImg.open(png_file_name)
         img = image.convert("RGB")
         self.converter = ConverterRGBToSpectrum()
         self.pixels_array = img.load()
@@ -28,7 +28,7 @@ class PixelsRGBArray:
 class ConverterRGBToSpectrum:
     def __init__(self):
         spectrum_file = 'spect.png'
-        spec_image = Image.open(spectrum_file)
+        spec_image = pillImg.open(spectrum_file)
         spec_img = spec_image.convert("RGB")
         self.pixels = spec_img.load()
         spec_size = spec_img.size[0]
