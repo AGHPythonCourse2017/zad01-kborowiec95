@@ -1,8 +1,13 @@
-from pixelsarray import PixelsRGBArray
+import pip
 import lightmusicconverter as lc
+from pixelsarray import PixelsRGBArray
 from midi_track import MidiTrack
 from parser import get_parsed_args
 
+
+# Install pillow and miditime :
+pip.main(['install', 'Pillow'])
+pip.main(['install', 'miditime'])
 # Get arguments :
 args = get_parsed_args('Narcotic music generator')
 input_file_name = args.input
